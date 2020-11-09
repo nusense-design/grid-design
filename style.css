@@ -1,0 +1,247 @@
+body {
+      font-size: 16px;
+      font-family: poppins;
+}
+
+button {
+      background: #ffc600;
+      border: 0;
+      padding: 10px 20px;
+}
+
+img {
+      max-width: 100%;
+}
+
+/* wrapper for margin */
+.wrapper {
+      display: grid;
+      grid-gap: 20px;
+}
+
+/* styling the top hero section header with cta aside- prices */
+.top {
+      display: grid;
+      grid-template-areas:
+            "hero hero cta-1"
+            "hero hero cta-2";
+      grid-gap: 10px;
+}
+
+.hero {
+      grid-area: hero;
+      min-height: 400px;
+      background: white url(images/pexels-chan-walrus-958545.jpg);
+      background-size: cover;
+      background-position: bottom right;
+      padding: 50px;
+      /* display: grid;
+      align-content: center; */
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+}
+
+.hero > * {
+      background: var(--yellow);
+      padding: 5px;
+}
+
+.cta {
+      font-weight: 400px;
+      font-size: 20px;
+      background: var(--yellow);
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      /* place-items: center center; */
+      align-content: center;
+      /* or use */
+}
+
+.cta p {
+      margin: 0;
+}
+.cta-1 {
+      grid-area: cta-1;
+}
+
+.cta-2 {
+      grid-area: cta-2;
+}
+
+.price {
+      font-family: "poppins";
+      font-size: 50px;
+      font-weight: 200;
+}
+
+/*---------- section2 menu ------------------------------>*/
+
+.menu button {
+      font-size: 20px;
+      font-weight: 600;
+      margin-left: auto;
+}
+
+.menu ul {
+      display: grid;
+      grid-gap: 10px;
+      padding: 0;
+      margin: 0;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      list-style: none;
+}
+
+.menu a {
+      background: var(--yellow);
+      display: block;
+      font-weight: 500;
+      text-decoration: none;
+      text-align: center;
+      padding: 10px;
+      text-align: center;
+      color: var(--black);
+      text-transform: uppercase;
+      font-size: 20px;
+}
+
+/* attribute selector in css -aria*/
+
+[aria-controls="menu-list"] {
+      display: none;
+}
+
+/*------------feature section ----------------------->*/
+
+.features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-gap: 10px;
+}
+
+.feature {
+      background: white;
+      padding: 10px;
+      border: 1px solid white;
+      text-align: center;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.feature .icon {
+      font-size: 50px;
+}
+.feature p {
+      color: rgba(0, 0, 0, 0.5);
+      font-weight: 300;
+}
+
+/* about section ------------------> */
+
+.about {
+      background: white;
+      padding: 50px;
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      align-items: center;
+}
+
+.about h2 {
+      font-size: 30px;
+}
+
+.about p {
+      font-weight: 300;
+}
+
+/*------- gallery section ---------------------> */
+
+.gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-gap: 5px;
+}
+.gallery img {
+      width: 100%;
+}
+
+.gallery h2 {
+      grid-column: 1/-1;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      grid-gap: 20px;
+}
+
+.gallery h2:before,
+.gallery h2:after {
+      content: "";
+      display: block;
+      height: 5px;
+      /* background:linear-gradient(to left,var(--yellow),transparent); */
+      background: linear-gradient(
+            to var(--direction, left),
+            var(--yellow),
+            transparent
+      );
+      /* above we created variable as direction and next parameter is default if not set*/
+}
+
+.gallery h2:after {
+      /* background:linear-gradient(to right,var(--yellow),transparent); */
+      --direction: right;
+}
+
+/* -----------media queries-------------- */
+
+@media (max-width: 700px) {
+      .top {
+            grid-template-areas:
+                  "hero hero"
+                  "cta-1 cta-2";
+      }
+      .menu {
+            order: -1;
+            perspective: 800px;
+            overflow: hidden;
+      }
+
+      [aria-controls="menu-list"] {
+            display: block;
+            margin-bottom: 10px;
+      }
+      .menu ul {
+            max-height: 0;
+            transform: rotateX(90deg);
+            transition: all ease-in-out 0.4s;
+      }
+      [aria-expanded="true"] ~ ul {
+            display: grid;
+            max-height: 500px;
+            transform: rotate(0deg);
+      }
+
+      [aria-expanded="false"] .close {
+            display: none;
+      }
+      [aria-expanded="true"] .open {
+            display: none;
+      }
+      [aria-expanded="true"] .close {
+            display: inline-block;
+      }
+      /* about-------------> */
+      .about {
+            grid-template-columns: 1fr;
+      }
+}
+
+@media (max-width: 500px) {
+      .top {
+            grid-template-areas:
+                  "hero"
+                  "cta-1"
+                  "cta-2";
+      }
+}
